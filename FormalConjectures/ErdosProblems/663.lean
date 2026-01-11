@@ -1,5 +1,5 @@
 /-
-Copyright 2025 The Formal Conjectures Authors.
+Copyright 2026 The Formal Conjectures Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import FormalConjectures.Util.ProblemImports
 namespace Erdos663
 
 /--
-Let q(n,k) denote the least number coprime to all numbers in [n+1, n+k].
+Let $q(n,k)$ denote the least number coprime to all numbers in $[n+1, n+k]$.
 -/
 
 def q (n k : ℕ) : ℕ :=
@@ -42,12 +42,12 @@ def q (n k : ℕ) : ℕ :=
     else 0
 
 /--
-Is it true that, if k is fixed and n is sufficiently large, we have
-q(n,k) < (1 + o(1)) log n?
+Is it true that, if $k>1$ is fixed and $n$ is sufficiently large, we have
+$q(n,k) < (1 + o(1)) \log n$?
 -/
 @[category research open, AMS 11]
 theorem erdos_663 :
-    answer(sorry) ↔ ∀ k > 0, ∃ C : ℕ, q (k := k) ≤ᶠ[.atTop] C*Nat.log2 := by
+    answer(sorry) ↔ ∀ k > 1, ∃ C : ℕ, q (k := k) ≤ᶠ[.atTop] C*Nat.log2 := by
     sorry
 
 end Erdos663

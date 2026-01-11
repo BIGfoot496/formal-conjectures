@@ -47,7 +47,7 @@ $q(n,k) < (1 + o(1)) \log n$?
 -/
 @[category research open, AMS 11]
 theorem erdos_663 :
-    answer(sorry) ↔ ∀ k > 1, ∃ C : ℕ, q (k := k) ≤ᶠ[.atTop] C*Nat.log2 := by
+    answer(sorry) ↔ ∀ k > 1, ∀ b : ℕ, q (k := k) ≤ᶠ[.atTop] Nat.log b := by
     sorry
 
 end Erdos663

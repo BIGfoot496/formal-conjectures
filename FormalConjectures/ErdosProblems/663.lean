@@ -50,7 +50,7 @@ q(n,k) < (1 + o(1)) log n?
 -/
 @[category research open, AMS 11]
 theorem erdos_663 :
-    answer(sorry) ↔ ∀ k : ℕ+, ∃ f : ℝ → ℝ, ∀ᶠ n in .atTop, q n k < (1+f) * Nat.log2 n := by
+    answer(sorry) ↔ ∀ k : ℕ+, q (k := k) <ᶠ[.atTop] Nat.log2 n := by
     sorry
 
 end Erdos663

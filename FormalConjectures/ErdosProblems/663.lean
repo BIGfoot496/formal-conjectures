@@ -50,4 +50,12 @@ theorem erdos_663 :
     answer(sorry) ↔ ∀ k > 1, ∀ b : ℕ, q (k := k) ≤ᶠ[.atTop] Nat.log b := by
     sorry
 
+/--
+The bound $q(n,k) < (1 + o(1)) k \log n$ is easy.
+-/
+@[category research solved, AMS 11]
+theorem erdos_663.easy :
+    answer(sorry) ↔ ∀ k > 1, ∀ b : ℕ, q (k := k) ≤ᶠ[.atTop] k * Nat.log b := by
+    sorry
+
 end Erdos663

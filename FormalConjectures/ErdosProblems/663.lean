@@ -28,21 +28,18 @@ namespace Erdos663
 Let q(n,k) denote the least number coprime to all numbers in [n+1, n+k].
 -/
 
-def q (n k : ℕ+) : ℕ :=
+def q (n k : ℕ) : ℕ :=
+    if hpos : n > 0 ∧ k > 0 then
     have h : ∃ q > 1, (∀ i ∈ Finset.Icc (n+1) (n+k), q.Coprime i) := by
         use (Nat.exists_infinite_primes (n+k+1)).choose
-        have h1 := (Nat.exists_infinite_primes (n+k+1)).choose_spec
-        obtain ⟨hl,hr⟩ := h1
-        simp only [gt_iff_lt, Finset.mem_Icc, and_imp]
+        have hspec := (Nat.exists_infinite_primes (n+k+1)).choose_spec
+        simp only [Finset.mem_Icc]
         constructor
-        nth_rw 1 [←PNat.one_add_natPred] at hl
         linarith
-        intros i _ h2
-        have h3 : i < (Nat.exists_infinite_primes (n+k+1)).choose := by
-            rw [←PNat.coe_le_coe i (n+k)] at h2
-            linarith
-        exact Nat.coprime_of_lt_prime (PNat.pos i) h3 hr
+        intros
+        exact Nat.coprime_of_lt_prime (by linarith) (by linarith) hspec.right
     Nat.find h
+    else 0
 
 /--
 Is it true that, if k is fixed and n is sufficiently large, we have
@@ -50,7 +47,7 @@ q(n,k) < (1 + o(1)) log n?
 -/
 @[category research open, AMS 11]
 theorem erdos_663 :
-    answer(sorry) ↔ ∀ k : ℕ+, q (k := k) <ᶠ[.atTop] Nat.log2 n := by
+    answer(sorry) ↔ ∀ k > 0, ∃ C : ℕ, q (k := k) ≤ᶠ[.atTop] C*Nat.log2 := by
     sorry
 
 end Erdos663
